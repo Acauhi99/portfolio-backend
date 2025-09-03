@@ -1,5 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { colors } from '../styles/colors';
 
 interface Props {
   children: ReactNode;
@@ -30,18 +31,32 @@ export class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-gray-950 flex items-center justify-center p-6">
+        <div
+          className="min-h-screen flex items-center justify-center p-6"
+          style={{ backgroundColor: colors.primary.from }}
+        >
           <div className="text-center">
-            <AlertTriangle size={64} className="text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">
+            <AlertTriangle
+              size={64}
+              className="mx-auto mb-4"
+              style={{ color: 'rgb(239, 68, 68)' }}
+            />
+            <h2
+              className="text-2xl font-bold mb-2"
+              style={{ color: colors.text.primary }}
+            >
               Oops! Algo deu errado
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="mb-6" style={{ color: colors.text.secondary }}>
               {this.state.error?.message || 'Ocorreu um erro inesperado'}
             </p>
             <button
               onClick={this.handleRetry}
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors mx-auto"
+              className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors mx-auto"
+              style={{
+                background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.via} 100%)`,
+                color: colors.text.primary,
+              }}
             >
               <RefreshCw size={18} />
               Tentar novamente
