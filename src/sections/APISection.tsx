@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink,
@@ -10,6 +10,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { cn } from '../utils/cn';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LoadingSpinner } from '../components/LoadingSpinner';
@@ -130,10 +131,15 @@ const APICard: React.FC<{ project: any; index: number }> = ({
   project,
   index,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = useIsMobile();
+  const [isExpanded, setIsExpanded] = useState(isMobile); // Expande por padrão no mobile
   const { elementRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.2,
   });
+
+  useEffect(() => {
+    setIsExpanded(isMobile); // Atualiza quando muda o tamanho da tela
+  }, [isMobile]);
 
   const visibleTech = project.tech.slice(0, 3);
   const hiddenTech = project.tech.slice(3);
@@ -235,7 +241,7 @@ const APICard: React.FC<{ project: any; index: number }> = ({
 
           {/* Tecnologias expandidas (mobile) */}
           <AnimatePresence>
-            {isExpanded && hasMoreTech && (
+            {isExpanded && project.tech.length > 3 && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
@@ -321,6 +327,7 @@ export const APISection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const categories = ['all', 'REST', 'GraphQL', 'WebSocket', 'gRPC'];
   const filteredProjects =
@@ -394,7 +401,11 @@ export const APISection: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 w-full"
+              className={
+                isMobile
+                  ? 'grid grid-cols-1 gap-4 w-full'
+                  : 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 w-full'
+              }
             >
               {filteredProjects.map((project, index) => (
                 <APICard key={project.id} project={project} index={index} />
