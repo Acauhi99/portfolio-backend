@@ -221,7 +221,7 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
             {visibleTech.map((tech: string) => (
               <span
                 key={tech}
-                className="px-2 py-1 text-xs rounded-md font-medium"
+                className="px-2 py-1 text-xs rounded-md font-medium flex items-center gap-1 touch-manipulation transition-colors hover:bg-blue-600/20"
                 style={{
                   backgroundColor: colors.surface.tertiary,
                   color: colors.text.secondary,
@@ -386,25 +386,42 @@ export const APISection: React.FC = () => {
           </motion.div>
 
           {/* Category Filter */}
-          <div className="flex justify-center mb-8 sm:mb-12 px-2">
-            <div className="w-full max-w-full overflow-x-auto">
-              <div className="flex gap-2 bg-gray-900/50 backdrop-blur-sm p-2 rounded-xl border border-gray-800 min-w-max mx-auto">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={cn(
-                      'px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap touch-manipulation',
-                      selectedCategory === category
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'text-gray-400 hover:text-white hover:bg-gray-800'
-                    )}
-                    style={{ minHeight: '40px' }}
-                  >
-                    {category === 'all' ? 'Todos' : category}
-                  </button>
-                ))}
-              </div>
+          <div className={cn('mb-8 sm:mb-12 px-2')}>
+            <div
+              className={cn(
+                'flex gap-2 bg-gray-900/50 backdrop-blur-sm p-2 rounded-xl border border-gray-800',
+                isMobile
+                  ? 'overflow-x-auto w-full max-w-xs mx-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-900'
+                  : 'flex-wrap w-full justify-around'
+              )}
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollSnapType: isMobile ? 'x mandatory' : undefined,
+                minWidth: isMobile ? '100%' : undefined,
+                maxWidth: isMobile ? '100%' : undefined,
+              }}
+            >
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={cn(
+                    'px-5 py-2 rounded-lg text-sm font-medium transition-all touch-manipulation',
+                    selectedCategory === category
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                    isMobile ? 'whitespace-nowrap scroll-snap-align-start' : ''
+                  )}
+                  style={{
+                    minHeight: '44px',
+                    minWidth: '110px',
+                    flex: isMobile ? '0 0 auto' : undefined,
+                  }}
+                  aria-label={`Filtrar por ${category}`}
+                >
+                  {category === 'all' ? 'Todos' : category}
+                </button>
+              ))}
             </div>
           </div>
 
