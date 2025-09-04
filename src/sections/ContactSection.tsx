@@ -3,6 +3,7 @@ import { Mail, Linkedin, Github } from 'lucide-react';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { colors } from '../styles/colors';
+import { cn } from '../utils/cn';
 
 export const ContactSection: React.FC = () => {
   const loading = false;
@@ -35,7 +36,9 @@ export const ContactSection: React.FC = () => {
                 href="mailto:seu-email@email.com"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors w-full md:w-auto"
+                className={cn(
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors w-full md:w-auto'
+                )}
                 style={{
                   background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.via} 100%)`,
                   color: colors.text.primary,
@@ -50,7 +53,9 @@ export const ContactSection: React.FC = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto"
+                className={cn(
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto'
+                )}
                 style={{
                   borderColor: colors.border.primary,
                   color: colors.text.secondary,
@@ -66,7 +71,9 @@ export const ContactSection: React.FC = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto"
+                className={cn(
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto'
+                )}
                 style={{
                   borderColor: colors.border.primary,
                   color: colors.text.secondary,

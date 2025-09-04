@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Activity, Zap, Shield, Server, Database, Mail } from 'lucide-react';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { colors } from '../styles/colors';
+import { cn } from '../utils/cn';
 
 const features = [
   { icon: Server, text: 'APIs REST & GraphQL' },
@@ -81,15 +82,20 @@ export const HeroSection: React.FC = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <a href="#api-projects" className="w-full sm:w-auto min-w-0">
+            <a
+              href="#api-projects"
+              className={cn('w-full', 'sm:w-auto', 'min-w-0')}
+            >
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors w-full text-base sm:text-sm touch-manipulation active:scale-95"
+                className={cn(
+                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors w-full text-base sm:text-sm touch-manipulation active:scale-95'
+                )}
                 style={{
                   background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.via} 100%)`,
                   color: colors.text.primary,
-                  minHeight: '48px', // Minimum touch target
+                  minHeight: '48px',
                 }}
               >
                 <Activity size={18} />
@@ -100,12 +106,14 @@ export const HeroSection: React.FC = () => (
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95"
+              className={cn(
+                'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95'
+              )}
               style={{
                 borderColor: colors.border.primary,
                 color: colors.text.secondary,
                 backgroundColor: colors.surface.tertiary,
-                minHeight: '48px', // Minimum touch target
+                minHeight: '48px',
               }}
             >
               <Mail size={18} />

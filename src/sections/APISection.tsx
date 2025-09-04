@@ -16,12 +16,27 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { colors } from '../styles/colors';
 
-const apiProjects = [
+// Defina o tipo para os projetos
+type APIProject = {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  status: 'online' | 'offline' | 'maintenance';
+  responseTime: number;
+  tech: string[];
+  features: string[];
+  documentation: string;
+  github: string;
+};
+
+// Use o tipo no array e no componente
+const apiProjects: APIProject[] = [
   {
     id: 1,
     name: 'E-commerce API',
     description:
-      'API completa para e-commerce com autenticação JWT, pagamentos e gerenciamento de produtos',
+      'API completa para e-commerce com autenticação JWT e pagamentos',
     category: 'REST',
     status: 'online',
     responseTime: 120,
@@ -127,18 +142,18 @@ const StatusBadge: React.FC<{ status: string; responseTime: number }> = ({
   );
 };
 
-const APICard: React.FC<{ project: any; index: number }> = ({
+const APICard: React.FC<{ project: APIProject; index: number }> = ({
   project,
   index,
 }) => {
   const isMobile = useIsMobile();
-  const [isExpanded, setIsExpanded] = useState(isMobile); // Expande por padrão no mobile
+  const [isExpanded, setIsExpanded] = useState(isMobile);
   const { elementRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.2,
   });
 
   useEffect(() => {
-    setIsExpanded(isMobile); // Atualiza quando muda o tamanho da tela
+    setIsExpanded(isMobile);
   }, [isMobile]);
 
   const visibleTech = project.tech.slice(0, 3);
@@ -325,8 +340,8 @@ const APICard: React.FC<{ project: any; index: number }> = ({
 
 export const APISection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
   const categories = ['all', 'REST', 'GraphQL', 'WebSocket', 'gRPC'];

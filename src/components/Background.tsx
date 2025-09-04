@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { ErrorBoundary } from './ErrorBoundary';
 import { colors } from '../styles/colors';
+import { cn } from '../utils/cn';
 
 const FloatingParticle = ({ index }: { index: number }) => {
   const size = Math.random() * 3 + 1;
@@ -10,7 +11,7 @@ const FloatingParticle = ({ index }: { index: number }) => {
 
   return (
     <motion.div
-      className="absolute rounded-full"
+      className={cn('absolute rounded-full')}
       style={{
         width: size,
         height: size,
@@ -42,7 +43,7 @@ const GeometricShape = ({ index }: { index: number }) => {
 
   return (
     <motion.div
-      className="absolute opacity-10"
+      className={cn('absolute opacity-10')}
       style={{
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
