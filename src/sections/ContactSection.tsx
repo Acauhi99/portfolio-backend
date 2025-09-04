@@ -33,7 +33,7 @@ export const ContactSection: React.FC = () => {
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4 w-full">
               <motion.a
-                href="mailto:seu-email@email.com"
+                href="mailto:acauhi.mateus@gmail.com"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(

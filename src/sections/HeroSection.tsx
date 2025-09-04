@@ -103,22 +103,27 @@ export const HeroSection: React.FC = () => (
               </motion.button>
             </a>
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className={cn(
-                'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95'
-              )}
-              style={{
-                borderColor: colors.border.primary,
-                color: colors.text.secondary,
-                backgroundColor: colors.surface.tertiary,
-                minHeight: '48px',
-              }}
+            <a
+              href="mailto:acauhi.mateus@gmail.com"
+              className={cn('w-full', 'sm:w-auto', 'min-w-0')}
             >
-              <Mail size={18} />
-              Contato
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={cn(
+                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95'
+                )}
+                style={{
+                  borderColor: colors.border.primary,
+                  color: colors.text.secondary,
+                  backgroundColor: colors.surface.tertiary,
+                  minHeight: '48px',
+                }}
+              >
+                <Mail size={18} />
+                Contato
+              </motion.button>
+            </a>
           </motion.div>
         </motion.div>
       </div>
