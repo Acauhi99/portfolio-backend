@@ -37,24 +37,26 @@ export const ContactSection: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors w-full md:w-auto'
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-shadow w-full md:w-auto cursor-pointer hover:shadow-lg hover:brightness-110 active:scale-95'
                 )}
                 style={{
                   background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.via} 100%)`,
                   color: colors.text.primary,
                 }}
               >
-                <Mail size={18} />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <Mail size={18} />
+                </motion.span>
                 Email
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/seulinkedin"
+                href="https://linkedin.com/in/acauhi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto'
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-shadow border backdrop-blur-sm w-full md:w-auto cursor-pointer hover:shadow-lg hover:brightness-110 active:scale-95'
                 )}
                 style={{
                   borderColor: colors.border.primary,
@@ -62,17 +64,19 @@ export const ContactSection: React.FC = () => {
                   backgroundColor: colors.surface.tertiary,
                 }}
               >
-                <Linkedin size={18} />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <Linkedin size={18} />
+                </motion.span>
                 LinkedIn
               </motion.a>
               <motion.a
-                href="https://github.com/seugithub"
+                href="https://github.com/Acauhi99"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full md:w-auto'
+                  'flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-shadow border backdrop-blur-sm w-full md:w-auto cursor-pointer hover:shadow-lg hover:brightness-110 active:scale-95'
                 )}
                 style={{
                   borderColor: colors.border.primary,
@@ -80,7 +84,9 @@ export const ContactSection: React.FC = () => {
                   backgroundColor: colors.surface.tertiary,
                 }}
               >
-                <Github size={18} />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <Github size={18} />
+                </motion.span>
                 GitHub
               </motion.a>
             </div>

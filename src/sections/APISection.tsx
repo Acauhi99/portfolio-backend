@@ -16,7 +16,6 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { colors } from '../styles/colors';
 
-// Defina o tipo para os projetos
 type APIProject = {
   id: number;
   name: string;
@@ -30,7 +29,6 @@ type APIProject = {
   github: string;
 };
 
-// Use o tipo no array e no componente
 const apiProjects: APIProject[] = [
   {
     id: 1,
@@ -47,8 +45,8 @@ const apiProjects: APIProject[] = [
       'CRUD Produtos',
       'Rate Limiting',
     ],
-    documentation: 'https://docs.projeto1.com',
-    github: 'https://github.com/projeto1',
+    documentation: 'https://http.cat/status/100',
+    github: 'https://http.cat/status/417',
   },
   {
     id: 2,
@@ -65,8 +63,8 @@ const apiProjects: APIProject[] = [
       'Cache Redis',
       'Pagination',
     ],
-    documentation: 'https://docs.projeto2.com',
-    github: 'https://github.com/projeto2',
+    documentation: 'https://http.cat/status/202',
+    github: 'https://http.cat/status/206',
   },
   {
     id: 3,
@@ -83,8 +81,8 @@ const apiProjects: APIProject[] = [
       'Histórico',
       'Status Online',
     ],
-    documentation: 'https://docs.projeto3.com',
-    github: 'https://github.com/projeto3',
+    documentation: 'https://http.cat/status/420',
+    github: 'https://http.cat/status/400',
   },
   {
     id: 4,
@@ -101,8 +99,8 @@ const apiProjects: APIProject[] = [
       'Health Checks',
       'Monitoring',
     ],
-    documentation: 'https://docs.projeto4.com',
-    github: 'https://github.com/projeto4',
+    documentation: 'https://http.cat/status/406',
+    github: 'https://http.cat/status/412',
   },
 ];
 
@@ -166,7 +164,10 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
       initial={{ opacity: 0, y: 50 }}
       animate={isIntersecting ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group relative backdrop-blur-sm border rounded-xl p-4 sm:p-6 hover:border-blue-500/50 transition-all duration-300 touch-manipulation"
+      className={cn(
+        'group relative backdrop-blur-sm border rounded-xl p-4 sm:p-6 hover:border-blue-500/50 transition-all duration-300 touch-manipulation',
+        'cursor-pointer hover:shadow-lg hover:brightness-110 active:scale-95'
+      )}
       style={{
         backgroundColor: colors.surface.secondary,
         borderColor: colors.border.primary,
@@ -221,7 +222,10 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
             {visibleTech.map((tech: string) => (
               <span
                 key={tech}
-                className="px-2 py-1 text-xs rounded-md font-medium flex items-center gap-1 touch-manipulation transition-colors hover:bg-blue-600/20"
+                className={cn(
+                  'px-2 py-1 text-xs rounded-md font-medium flex items-center gap-1 touch-manipulation transition-colors hover:bg-blue-600/20',
+                  'cursor-pointer hover:shadow-lg active:scale-95'
+                )}
                 style={{
                   backgroundColor: colors.surface.tertiary,
                   color: colors.text.secondary,
@@ -235,7 +239,10 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
             {hasMoreTech && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="px-2 py-1 text-xs rounded-md font-medium flex items-center gap-1 touch-manipulation transition-colors hover:bg-blue-600/20"
+                className={cn(
+                  'px-2 py-1 text-xs rounded-md font-medium flex items-center gap-1 touch-manipulation transition-colors hover:bg-blue-600/20',
+                  'cursor-pointer hover:shadow-lg active:scale-95'
+                )}
                 style={{
                   color: colors.text.accent,
                   minHeight: '32px',
@@ -243,13 +250,15 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
                 }}
               >
                 +{hiddenTech.length}
-                <ChevronDown
-                  size={12}
-                  className={cn(
-                    'transition-transform duration-200',
-                    isExpanded && 'rotate-180'
-                  )}
-                />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <ChevronDown
+                    size={12}
+                    className={cn(
+                      'transition-transform duration-200',
+                      isExpanded && 'rotate-180'
+                    )}
+                  />
+                </motion.span>
               </button>
             )}
           </div>
@@ -268,7 +277,10 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
                   {hiddenTech.map((tech: string) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs rounded-md font-medium"
+                      className={cn(
+                        'px-2 py-1 text-xs rounded-md font-medium',
+                        'cursor-pointer hover:shadow-lg active:scale-95'
+                      )}
                       style={{
                         backgroundColor: colors.surface.tertiary,
                         color: colors.text.secondary,
@@ -307,30 +319,45 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
               href={project.documentation}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm transition-colors touch-manipulation py-2"
+              className={cn(
+                'flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm transition-colors touch-manipulation py-2',
+                'cursor-pointer hover:shadow-lg active:scale-95'
+              )}
             >
-              <ExternalLink size={14} />
+              <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                <ExternalLink size={14} />
+              </motion.span>
               <span>Docs</span>
             </a>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-gray-400 hover:text-white text-sm transition-colors touch-manipulation py-2"
+              className={cn(
+                'flex items-center gap-1 text-gray-400 hover:text-white text-sm transition-colors touch-manipulation py-2',
+                'cursor-pointer hover:shadow-lg active:scale-95'
+              )}
             >
-              <Github size={14} />
+              <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                <Github size={14} />
+              </motion.span>
               <span>Code</span>
             </a>
           </div>
 
           <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors w-full sm:w-auto touch-manipulation order-1 sm:order-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              'flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors w-full sm:w-auto touch-manipulation order-1 sm:order-2',
+              'cursor-pointer hover:shadow-lg active:scale-95'
+            )}
             style={{ minHeight: '44px' }}
           >
-            <span>Test API</span>
-            <ArrowRight size={14} />
+            <span>Veja a API</span>
+            <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+              <ArrowRight size={14} />
+            </motion.span>
           </motion.button>
         </div>
       </div>
@@ -391,7 +418,7 @@ export const APISection: React.FC = () => {
               className={cn(
                 'flex gap-2 bg-gray-900/50 backdrop-blur-sm p-2 rounded-xl border border-gray-800',
                 isMobile
-                  ? 'overflow-x-auto w-full max-w-xs mx-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-900'
+                  ? 'overflow-x-auto w-full max-w-md mx-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-900 justify-around'
                   : 'flex-wrap w-full justify-around'
               )}
               style={{
@@ -410,7 +437,8 @@ export const APISection: React.FC = () => {
                     selectedCategory === category
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                    isMobile ? 'whitespace-nowrap scroll-snap-align-start' : ''
+                    isMobile ? 'whitespace-nowrap scroll-snap-align-start' : '',
+                    'cursor-pointer hover:shadow-lg active:scale-95'
                   )}
                   style={{
                     minHeight: '44px',

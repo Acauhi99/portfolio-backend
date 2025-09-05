@@ -87,10 +87,10 @@ export const HeroSection: React.FC = () => (
               className={cn('w-full', 'sm:w-auto', 'min-w-0')}
             >
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors w-full text-base sm:text-sm touch-manipulation active:scale-95'
+                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-shadow w-full text-base sm:text-sm touch-manipulation active:scale-95 cursor-pointer hover:shadow-lg hover:brightness-110'
                 )}
                 style={{
                   background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.via} 100%)`,
@@ -98,7 +98,9 @@ export const HeroSection: React.FC = () => (
                   minHeight: '48px',
                 }}
               >
-                <Activity size={18} />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <Activity size={18} />
+                </motion.span>
                 Ver APIs
               </motion.button>
             </a>
@@ -108,10 +110,10 @@ export const HeroSection: React.FC = () => (
               className={cn('w-full', 'sm:w-auto', 'min-w-0')}
             >
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={cn(
-                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95'
+                  'flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-lg font-medium transition-colors transition-shadow border backdrop-blur-sm w-full sm:w-auto text-base sm:text-sm touch-manipulation active:scale-95 cursor-pointer hover:shadow-lg hover:brightness-110'
                 )}
                 style={{
                   borderColor: colors.border.primary,
@@ -120,7 +122,9 @@ export const HeroSection: React.FC = () => (
                   minHeight: '48px',
                 }}
               >
-                <Mail size={18} />
+                <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
+                  <Mail size={18} />
+                </motion.span>
                 Contato
               </motion.button>
             </a>
