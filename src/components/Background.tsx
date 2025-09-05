@@ -4,9 +4,11 @@ import { colors } from '../styles/colors';
 import { cn } from '../utils/cn';
 
 const FloatingParticle = ({ index }: { index: number }) => {
-  const size = (index % 3) + 2;
+  const size = 4 + (index % 3) * 2;
   const duration = 15 + (index % 10);
   const delay = (index * 0.7) % 5;
+  const left = `${(index * 37) % 100}%`;
+  const top = `${(index * 53) % 100}%`;
 
   return (
     <motion.div
@@ -15,13 +17,14 @@ const FloatingParticle = ({ index }: { index: number }) => {
         width: size,
         height: size,
         background: `linear-gradient(45deg, ${colors.text.accent}, ${colors.accent.to})`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
+        left,
+        top,
         filter: 'blur(0.5px)',
+        willChange: 'transform, opacity',
       }}
       animate={{
-        x: [0, Math.random() * 200 - 100],
-        y: [0, Math.random() * 200 - 100],
+        x: [0, ((index * 13) % 200) - 100],
+        y: [0, ((index * 17) % 200) - 100],
         opacity: [0, 0.8, 0],
         scale: [0.5, 1, 0.5],
       }}
@@ -35,19 +38,23 @@ const FloatingParticle = ({ index }: { index: number }) => {
   );
 };
 
+// GeometricShape otimizado: determinístico, mais formas, melhor performance
 const GeometricShape = ({ index }: { index: number }) => {
-  const shapes = ['circle', 'square', 'triangle'];
+  const shapes = ['circle', 'square', 'triangle', 'diamond', 'hexagon'];
   const shape = shapes[index % shapes.length];
-  const size = Math.random() * 40 + 20;
+  const size = 24 + (index % 6) * 8;
+  const left = `${(index * 23) % 100}%`;
+  const top = `${(index * 41) % 100}%`;
 
   return (
     <motion.div
       className={cn('absolute opacity-10')}
       style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
+        left,
+        top,
         width: size,
         height: size,
+        willChange: 'transform, opacity',
       }}
       animate={{
         rotate: [0, 360],
@@ -55,7 +62,7 @@ const GeometricShape = ({ index }: { index: number }) => {
         opacity: [0.05, 0.15, 0.05],
       }}
       transition={{
-        duration: Math.random() * 30 + 20,
+        duration: 25 + (index % 10),
         repeat: Infinity,
         ease: 'linear',
       }}
@@ -74,9 +81,31 @@ const GeometricShape = ({ index }: { index: number }) => {
       )}
       {shape === 'triangle' && (
         <div
-          className="w-0 h-0 border-l-[10px] border-r-[10px] border-b-[20px] border-transparent"
+          className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[24px] border-transparent"
           style={{ borderBottomColor: colors.border.accent }}
         />
+      )}
+      {shape === 'diamond' && (
+        <div
+          className="w-full h-full border-2 rotate-45"
+          style={{ borderColor: colors.accent.via }}
+        />
+      )}
+      {shape === 'hexagon' && (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 40 40"
+          className="absolute"
+          style={{ left: 0, top: 0 }}
+        >
+          <polygon
+            points="20,4 36,12 36,28 20,36 4,28 4,12"
+            fill="none"
+            stroke={colors.accent.to}
+            strokeWidth="2"
+          />
+        </svg>
       )}
     </motion.div>
   );
@@ -144,16 +173,16 @@ export const Background = () => {
           }}
         />
 
-        {/* Floating particles */}
+        {/* Floating particles (reduzido para 40 para performance) */}
         <div className="absolute inset-0">
-          {[...Array(100)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <FloatingParticle key={`particle-${i}`} index={i} />
           ))}
         </div>
 
-        {/* Geometric shapes */}
+        {/* Geometric shapes (aumentado para 16, mais variedade) */}
         <div className="absolute inset-0">
-          {[...Array(32)].map((_, i) => (
+          {[...Array(16)].map((_, i) => (
             <GeometricShape key={`shape-${i}`} index={i} />
           ))}
         </div>
