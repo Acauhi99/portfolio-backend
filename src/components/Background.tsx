@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from 'framer-motion';
 import { ErrorBoundary } from './ErrorBoundary';
 import { colors } from '../styles/colors';
 import { cn } from '../utils/cn';
 
 const FloatingParticle = ({ index }: { index: number }) => {
-  const size = Math.random() * 3 + 1;
-  const duration = Math.random() * 20 + 10;
-  const delay = Math.random() * 5;
+  const size = (index % 3) + 2;
+  const duration = 15 + (index % 10);
+  const delay = (index * 0.7) % 5;
 
   return (
     <motion.div
@@ -147,14 +146,14 @@ export const Background = () => {
 
         {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(100)].map((_, i) => (
             <FloatingParticle key={`particle-${i}`} index={i} />
           ))}
         </div>
 
         {/* Geometric shapes */}
         <div className="absolute inset-0">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(32)].map((_, i) => (
             <GeometricShape key={`shape-${i}`} index={i} />
           ))}
         </div>
