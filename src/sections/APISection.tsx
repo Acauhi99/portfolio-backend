@@ -15,6 +15,7 @@ import { cn } from '../utils/cn';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { colors } from '../styles/colors';
+import { ModalNotImplemented } from '../components/ModalNotImplemented';
 
 type APIProject = {
   id: number;
@@ -146,6 +147,7 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
 }) => {
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(isMobile);
+  const [modalOpen, setModalOpen] = useState(false);
   const { elementRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.2,
   });
@@ -353,6 +355,7 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
               'cursor-pointer hover:shadow-lg active:scale-95'
             )}
             style={{ minHeight: '44px' }}
+            onClick={() => setModalOpen(true)}
           >
             <span>Veja a API</span>
             <motion.span whileTap={{ scale: 1.2, rotate: 10 }}>
@@ -361,6 +364,11 @@ const APICard: React.FC<{ project: APIProject; index: number }> = ({
           </motion.button>
         </div>
       </div>
+      <ModalNotImplemented
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        projectName={project.name}
+      />
     </motion.div>
   );
 };

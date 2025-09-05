@@ -24,6 +24,11 @@ export const ModalNotImplemented: React.FC<ModalNotImplementedProps> = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+        }}
       >
         <motion.div
           className={cn(
@@ -34,15 +39,18 @@ export const ModalNotImplemented: React.FC<ModalNotImplementedProps> = ({
           exit={{ scale: 0.95, y: 40, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
+          {/* Botão de fechar no topo superior direito */}
           <button
             onClick={onClose}
             className={cn(
-              'absolute top-4 right-4 p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors',
+              'absolute top-4 right-4 flex items-center justify-center p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors',
               'cursor-pointer'
             )}
             aria-label="Fechar modal"
           >
-            <X size={20} style={{ color: colors.text.primary }} />
+            <span className="flex items-center justify-center w-6 h-6">
+              <X size={24} style={{ color: colors.text.primary }} />
+            </span>
           </button>
           <motion.div
             className="mb-4 flex items-center gap-2"
@@ -67,41 +75,12 @@ export const ModalNotImplemented: React.FC<ModalNotImplementedProps> = ({
             {projectName}
           </h3>
           <p
-            className="text-base sm:text-lg text-center mb-4"
+            className="text-base sm:text-lg text-center mb-2"
             style={{ color: colors.text.secondary }}
           >
             Em breve você poderá testar esta API diretamente aqui! <br />
             Enquanto isso, explore o código e a documentação.
           </p>
-          <motion.div
-            className="w-full flex flex-col sm:flex-row gap-3 mt-2"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <a
-              href="#"
-              className={cn(
-                'flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors bg-blue-600 hover:bg-blue-700 text-white shadow-lg cursor-pointer'
-              )}
-              style={{ minHeight: 44 }}
-              tabIndex={-1}
-            >
-              <Zap size={18} />
-              Teste em breve
-            </a>
-            <a
-              href="#"
-              className={cn(
-                'flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors bg-gray-800 hover:bg-gray-700 text-white shadow-lg cursor-pointer'
-              )}
-              style={{ minHeight: 44 }}
-              tabIndex={-1}
-            >
-              <Server size={18} />
-              API Docs
-            </a>
-          </motion.div>
         </motion.div>
       </motion.div>
     )}

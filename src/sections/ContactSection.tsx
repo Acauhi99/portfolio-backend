@@ -93,6 +93,32 @@ export const ContactSection: React.FC = () => {
           </motion.div>
         </div>
       </section>
+      <div className="w-full flex justify-center mb-8">
+        <span
+          className="flex items-center gap-2 text-lg sm:text-2xl font-bold tracking-wide select-none"
+          style={{
+            background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.to} 100%)`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            letterSpacing: '0.08em',
+            userSelect: 'none',
+          }}
+        >
+          <span
+            className="text-2xl sm:text-3xl font-extrabold"
+            style={{
+              background: `linear-gradient(135deg, ${colors.text.accent} 0%, ${colors.accent.to} 100%)`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            &copy;
+          </span>
+          Acauhi
+        </span>
+      </div>
     </ErrorBoundary>
   );
 };

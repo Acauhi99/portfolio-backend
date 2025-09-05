@@ -32,7 +32,7 @@ export const HeroSection: React.FC = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Backend Developer
+            Software Engineer
           </motion.h1>
 
           <motion.p
@@ -42,8 +42,8 @@ export const HeroSection: React.FC = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Construindo APIs robustas e escaláveis que impulsionam aplicações
-            modernas
+            Construindo aplicações robustas e escaláveis que impulsionam
+            aplicações modernas
           </motion.p>
 
           <motion.div
